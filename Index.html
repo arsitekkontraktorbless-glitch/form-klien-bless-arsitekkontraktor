@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bless Arsitek & Kontraktor - Form Konsultasi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- EmailJS SDK CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <style>
+        body {
+            background-color: #f1f5f9;
+        }
+        .bg-navy-card {
+            background-color: #0f172a;
+        }
+    </style>
+</head>
+<body class="py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto space-y-6">
+        
+        <!-- HERO BANNER -->
+        <div class="bg-navy-card text-white rounded-2xl p-8 text-center shadow-lg border-b-4 border-amber-600 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <span class="bg-amber-600 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full text-white">
+                <i class="fa-solid fa-gem mr-1"></i> Wujudkan Hunian Impian Anda
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-amber-500">
+                BLESS ARSITEK & KONTRAKTOR
+            </h1>
+            <p class="text-slate-400 mt-2 text-sm sm:text-base max-w-xl mx-auto">
+                Sistem Formulir Konsultasi Proyek Terintegrasi. Mengonversi data kebutuhan hunian Anda menjadi rancangan presisi.
+            </p>
+        </div>
+
+        <form id="consultationForm" class="space-y-6">
+            
+            <!-- SECTION A: DATA PEMILIK -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-navy-card text-white px-6 py-4 flex items-center space-x-3">
+                    <span class="bg-amber-600 w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm">A</span>
+                    <h2 class="font-bold tracking-wide uppercase text-sm sm:text-base">Data Pemilik</h2>
+                </div>
+                <div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-3 top-3.5 text-slate-400 text-sm"></i>
+                            <input type="text" id="clientName" required placeholder="Contoh: Budi Santoso" class="w-full pl-9 pr-3 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <i class="fa-brands fa-whatsapp absolute left-3 top-3.5 text-slate-400 text-sm"></i>
+                            <input type="tel" id="clientWhatsapp" required placeholder="Contoh: 08123456789" class="w-full pl-9 pr-3 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Email (Opsional)</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-envelope absolute left-3 top-3.5 text-slate-400 text-sm"></i>
+                            <input type="email" id="clientEmail" placeholder="Contoh: budi@email.com" class="w-full pl-9 pr-3 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Tinggal Saat Ini <span class="text-red-500">*</span></label>
+                        <textarea id="clientAddress" required placeholder="Tuliskan alamat lengkap domisili saat ini..." rows="3" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION B: INFORMASI PROYEK -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-navy-card text-white px-6 py-4 flex items-center space-x-3">
+                    <span class="bg-amber-600 w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm">B</span>
+                    <h2 class="font-bold tracking-wide uppercase text-sm sm:text-base">Informasi Proyek</h2>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lokasi Proyek <span class="text-red-500">*</span></label>
+                        <textarea id="projectAddress" required placeholder="Tuliskan lokasi lengkap tanah/bangunan yang akan dikerjakan..." rows="2" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm"></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Jenis Pekerjaan <span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="border border-slate-300 rounded-xl p-3 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-50 text-sm">
+                                    <input type="radio" name="jobType" value="Bangun Baru" checked class="accent-amber-600">
+                                    <span>Bangun Baru</span>
+                                </label>
+                                <label class="border border-slate-300 rounded-xl p-3 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-50 text-sm">
+                                    <input type="radio" name="jobType" value="Renovasi" class="accent-amber-600">
+                                    <span>Renovasi</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Jenis Proyek Bangunan <span class="text-red-500">*</span></label>
+                            <select id="buildingType" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                <option value="Rumah Tinggal">Rumah Tinggal</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Rumah Kos">Rumah Kos</option>
+                                <option value="Ruko">Ruko</option>
+                                <option value="Apartemen">Apartemen</option>
+                                <option value="Hotel">Hotel</option>
+                                <option value="Cafe">Cafe</option>
+                                <option value="Toko">Toko</option>
+                                <option value="Tempat Usaha">Tempat Usaha</option>
+                                <option value="Kantor">Kantor</option>
+                                <option value="Gudang">Gudang</option>
+                                <option value="Pabrik">Pabrik</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Jumlah Lantai <span class="text-red-500">*</span></label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-50 text-sm">
+                                <input type="radio" name="floorCount" value="1 Lantai" checked class="accent-amber-600">
+                                <span>1 Lantai</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-50 text-sm">
+                                <input type="radio" name="floorCount" value="2 Lantai" class="accent-amber-600">
+                                <span>2 Lantai</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-50 text-sm">
+                                <input type="radio" name="floorCount" value="3 Lantai" class="accent-amber-600">
+                                <span>3 Lantai</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-50 text-sm">
+                                <input type="radio" name="floorCount" value="4 Lantai atau Lebih" class="accent-amber-600">
+                                <span>4+ Lantai</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION C: DATA LAHAN & BANGUNAN -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-navy-card text-white px-6 py-4 flex items-center space-x-3">
+                    <span class="bg-amber-600 w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm">C</span>
+                    <h2 class="font-bold tracking-wide uppercase text-sm sm:text-base">Data Lahan & Bangunan</h2>
+                </div>
+                <div class="p-6 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Dimensi Tanah -->
+                        <div class="border border-slate-200 rounded-2xl p-4 bg-slate-50/50">
+                            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center">
+                                <i class="fa-solid fa-vector-square mr-2 text-amber-600"></i> Dimensi Lahan / Tanah
+                            </h3>
+                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Lebar (m)</label>
+                                    <input type="number" id="landWidth" value="0" min="0" class="w-full p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Panjang (m)</label>
+                                    <input type="number" id="landLength" value="0" min="0" class="w-full p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                </div>
+                            </div>
+                            <div class="bg-navy-card text-white rounded-xl p-3 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Total Luas Lahan:</span>
+                                <span class="text-base font-bold text-amber-400"><span id="totalLandArea">0</span> m²</span>
+                            </div>
+                        </div>
+
+                        <!-- Dimensi Rencana Bangunan -->
+                        <div class="border border-slate-200 rounded-2xl p-4 bg-slate-50/50">
+                            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center">
+                                <i class="fa-solid fa-compass-drafting mr-2 text-amber-600"></i> Dimensi Rencana Bangunan
+                            </h3>
+                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Lebar (m)</label>
+                                    <input type="number" id="buildingWidth" value="0" min="0" class="w-full p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Panjang (m)</label>
+                                    <input type="number" id="buildingLength" value="0" min="0" class="w-full p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                </div>
+                            </div>
+                            <div class="bg-navy-card text-white rounded-xl p-3 flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Total Luas Bangunan:</span>
+                                <span class="text-base font-bold text-emerald-400"><span id="totalBuildingArea">0</span> m²</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arah Mata Angin -->
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2 flex items-center">
+                            <i class="fa-solid fa-compass mr-2 text-amber-600 text-sm"></i>
+                            Arah Hadap Bangunan / Lahan (Arah Mata Angin) <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Utara" checked class="accent-amber-600">
+                                <span>Utara</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Timur" class="accent-amber-600">
+                                <span>Timur</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Selatan" class="accent-amber-600">
+                                <span>Selatan</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Barat" class="accent-amber-600">
+                                <span>Barat</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Timur Laut" class="accent-amber-600">
+                                <span>Timur Laut</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Tenggara" class="accent-amber-600">
+                                <span>Tenggara</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Barat Daya" class="accent-amber-600">
+                                <span>Barat Daya</span>
+                            </label>
+                            <label class="border border-slate-300 rounded-xl p-2.5 flex items-center space-x-2 cursor-pointer hover:bg-white bg-slate-100/50 text-sm">
+                                <input type="radio" name="landFacing" value="Barat Laut" class="accent-amber-600">
+                                <span>Barat Laut</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION D: KONSEP & KEBUTUHAN RUANGAN -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-navy-card text-white px-6 py-4 flex items-center space-x-3">
+                    <span class="bg-amber-600 w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm">D</span>
+                    <h2 class="font-bold tracking-wide uppercase text-sm sm:text-base">Konsep & Kebutuhan Ruangan</h2>
+                </div>
+                <div class="p-6 space-y-5">
+                    <!-- Konsep Bangunan -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Konsep Bangunan <span class="text-red-500">*</span></label>
+                        <select id="buildingConcept" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                            <option value="Minimalis Modern">Minimalis Modern</option>
+                            <option value="Classic Modern">Classic Modern</option>
+                            <option value="Scandinavian">Scandinavian</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Tropis Modern">Tropis Modern</option>
+                            <option value="Japandi">Japandi</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        <input type="text" id="customConcept" placeholder="Sebutkan konsep khusus Anda..." class="hidden w-full mt-2 p-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm">
+                    </div>
+
+                    <!-- Pilihan Jumlah Kamar Tidur -->
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50 space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Jumlah Kamar Tidur Utama <span class="text-red-500">*</span></label>
+                                <select id="mainBedroomCount" class="w-full p-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                    <option value="1 Kamar Utama">1 Kamar Utama</option>
+                                    <option value="2 Kamar Utama">2 Kamar Utama</option>
+                                    <option value="Lebih dari 2">Lebih dari 2</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Jumlah Kamar Tidur Anak / Pendukung <span class="text-red-500">*</span></label>
+                                <select id="childBedroomCount" class="w-full p-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                    <option value="0 Kamar Anak">Tanpa Kamar Anak</option>
+                                    <option value="1 Kamar Anak">1 Kamar</option>
+                                    <option value="2 Kamar Anak">2 Kamar</option>
+                                    <option value="3 Kamar Anak">3 Kamar</option>
+                                    <option value="4 Kamar Anak">4 Kamar</option>
+                                    <option value="Lebih dari 4">Lebih dari 4</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Opsi Dinamis Kamar Mandi Utama -->
+                        <div class="pt-2">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Fasilitas Kamar Mandi di Kamar Utama <span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="border border-slate-300 rounded-xl p-2.5 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-100 text-sm bg-white">
+                                    <input type="radio" name="mainBathroomType" value="Kamar Mandi Dalam" checked class="accent-amber-600">
+                                    <span>Kamar Mandi Dalam</span>
+                                </label>
+                                <label class="border border-slate-300 rounded-xl p-2.5 flex items-center justify-center space-x-2 cursor-pointer hover:bg-slate-100 text-sm bg-white">
+                                    <input type="radio" name="mainBathroomType" value="Kamar Mandi Luar" class="accent-amber-600">
+                                    <span>Kamar Mandi Luar</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Sub-fitur Kamar Mandi Dalam -->
+                        <div id="innerBathroomOptions" class="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                            <label class="block text-[11px] font-bold text-amber-700 uppercase tracking-wide">Fasilitas Kamar Mandi Dalam (Bisa Pilih Lebih Dari Satu):</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <label class="flex items-center space-x-2 text-xs text-slate-700 p-2 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" value="Bathtub" class="bathroom-facility accent-amber-600"> <span>Bathtub</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-xs text-slate-700 p-2 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" value="Shower" class="bathroom-facility accent-amber-600"> <span>Shower</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-xs text-slate-700 p-2 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" value="Closet" class="bathroom-facility accent-amber-600"> <span>Closet</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-xs text-slate-700 p-2 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
+                                    <input type="checkbox" value="Washtafel" class="bathroom-facility accent-amber-600"> <span>Washtafel</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pilihan Jumlah Kamar Mandi Luar & Opsi Dapur -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Jumlah Kamar Mandi Luar / Umum <span class="text-red-500">*</span></label>
+                            <select id="outerBathroomCount" class="w-full p-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                <option value="1 Kamar Mandi Luar">1 Kamar Mandi</option>
+                                <option value="2 Kamar Mandi Luar">2 Kamar Mandi</option>
+                                <option value="3 Kamar Mandi Luar">3 Kamar Mandi</option>
+                                <option value="4 Kamar Mandi Luar atau Lebih">4+ Kamar Mandi</option>
+                                <option value="Tanpa Kamar Mandi Luar">Tidak Ada</option>
+                            </select>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Kebutuhan Area Dapur (Bisa Pilih Keduanya)</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="flex items-center space-x-2 text-xs text-slate-700 p-2.5 bg-white rounded-xl border border-slate-300 cursor-pointer">
+                                    <input type="checkbox" value="Dapur Bersih" class="kitchen-type accent-amber-600"> <span>Dapur Bersih</span>
+                                </label>
+                                <label class="flex items-center space-x-2 text-xs text-slate-700 p-2.5 bg-white rounded-xl border border-slate-300 cursor-pointer">
+                                    <input type="checkbox" value="Dapur Kotor" class="kitchen-type accent-amber-600"> <span>Dapur Kotor</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ruangan Tambahan Lainnya -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Kebutuhan Ruangan Tambahan Lainnya</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Carport" id="cbCarport" class="room-cb accent-amber-600"> <span>Carport</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Garasi" id="cbGarasi" class="room-cb accent-amber-600"> <span>Garasi</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Taman Depan" class="room-cb accent-amber-600"> <span>Taman Depan</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Ruang Tamu" class="room-cb accent-amber-600"> <span>Ruang Tamu</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Ruang Keluarga" class="room-cb accent-amber-600"> <span>Ruang Keluarga</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Ruang Makan" class="room-cb accent-amber-600"> <span>Ruang Makan</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Laundry" class="room-cb accent-amber-600"> <span>Laundry</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Mushola" class="room-cb accent-amber-600"> <span>Mushola</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Ruang Kerja" class="room-cb accent-amber-600"> <span>Ruang Kerja</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Gudang" class="room-cb accent-amber-600"> <span>Gudang</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Kolam Renang" class="room-cb accent-amber-600"> <span>Kolam Renang</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Rooftop" class="room-cb accent-amber-600"> <span>Rooftop</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" value="Area Servis" class="room-cb accent-amber-600"> <span>Area Servis</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm text-slate-700 bg-slate-50 p-2 rounded-xl border border-slate-200 cursor-pointer">
+                                <input type="checkbox" id="cbRoomOthers" value="Lainnya" class="accent-amber-600"> <span>Lainnya</span>
+                            </label>
+                        </div>
+                        <input type="text" id="customRooms" placeholder="Tuliskan ruangan lain tambahan dipisahkan koma..." class="hidden w-full mt-2 p-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm">
+                    </div>
+
+                    <!-- INPUT DINAMIS: KAPASITAS KENDARAAN CARPORT / GARASI -->
+                    <div id="vehicleCapacitySection" class="hidden border border-amber-200 rounded-xl p-4 bg-amber-50/40 space-y-3 animate-fade-in">
+                        <label class="block text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center">
+                            <i class="fa-solid fa-car mr-2"></i> Kapasitas Carport / Garasi Bangunan
+                        </label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Kapasitas Mobil</label>
+                                <select id="carCapacity" class="w-full p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                    <option value="0 Mobil">Tidak Ada Mobil</option>
+                                    <option value="1 Mobil">1 Mobil</option>
+                                    <option value="2 Mobil">2 Mobil</option>
+                                    <option value="3 Mobil">3 Mobil</option>
+                                    <option value="4 Mobil">4 Mobil</option>
+                                    <option value="Lebih dari 4 Mobil">Lebih dari 4</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Kapasitas Motor</label>
+                                <select id="motorCapacity" class="w-full p-2 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                    <option value="0 Motor">Tidak Ada Motor</option>
+                                    <option value="1 Motor">1 Motor</option>
+                                    <option value="2 Motor">2 Motor</option>
+                                    <option value="3 Motor">3 Motor</option>
+                                    <option value="4 Motor">4 Motor</option>
+                                    <option value="5-10 Motor">5 - 10 Motor</option>
+                                    <option value="Lebih dari 10 Motor">Lebih dari 10</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION E: ESTIMASI PROYEK & REFERENSI -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-navy-card text-white px-6 py-4 flex items-center space-x-3">
+                    <span class="bg-amber-600 w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm">E</span>
+                    <h2 class="font-bold tracking-wide uppercase text-sm sm:text-base">Estimasi & Catatan</h2>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Target Mulai Pembangunan <span class="text-red-500">*</span></label>
+                            <input type="date" id="targetStartDate" required class="w-full p-2.5 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Estimasi Anggaran <span class="text-red-500">*</span></label>
+                            <select id="budgetEstimation" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm bg-white">
+                                <option value="Sub-300">Dibawah Rp 300 Juta</option>
+                                <option value="300-500">Rp 300 Juta – Rp 500 Juta</option>
+                                <option value="500-750">Rp 500 Juta – Rp 750 Juta</option>
+                                <option value="750-1M">Rp 750 Juta – Rp 1 Miliar</option>
+                                <option value="1M-2M">Rp 1 Miliar – Rp 2 Miliar</option>
+                                <option value="2M-5M">Rp 2 Miliar – Rp 5 Miliar</option>
+                                <option value="Over-5M">Diatas Rp 5 Miliar</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Upload Foto Lahan</label>
+                            <input type="file" accept=".jpg,.png,.pdf" class="w-full text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 border border-slate-200 p-1.5 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Upload Denah/Referensi</label>
+                            <input type="file" accept=".jpg,.png,.pdf" class="w-full text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 border border-slate-200 p-1.5 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Upload Inspirasi Desain</label>
+                            <input type="file" accept=".jpg,.png,.pdf" class="w-full text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 border border-slate-200 p-1.5 rounded-xl">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Ceritakan Kebutuhan Khusus Anda</label>
+                        <textarea id="additionalNotes" placeholder="Contoh: Ingin rumah 2 lantai dengan konsep modern tropis, Membutuhkan 4 kamar tidur..." rows="3" class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-amber-600 text-sm"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRIVASI POLICY DISCLAIMER -->
+            <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-800 text-xs space-y-1 shadow-sm">
+                <div class="flex items-center space-x-2 font-bold text-emerald-900">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>INFORMASI JAMINAN PRIVASI DATA</span>
+                </div>
+                <p class="pl-5">✓ Data terkirim otomatis ke email arsitekkontraktorbless@gmail.com dan nomor WhatsApp resmi.</p>
+                <p class="pl-5">✓ Berkas rahasia dienkripsi dan tidak disebarluaskan ke pihak ketiga.</p>
+            </div>
+
+            <!-- TOMBOL AKSI UTAMA -->
+            <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-4 px-6 rounded-2xl shadow-md hover:bg-emerald-700 transition duration-200 flex items-center justify-center space-x-3 text-base cursor-pointer transform active:scale-[0.99]">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>KIRIM FORMULIR KE WHATSAPP ADMIN</span>
+            </button>
+        </form>
+
+        <footer class="text-center text-xs text-slate-400 pt-4">
+            &copy; 2026 Bless Arsitek & Kontraktor. All Rights Reserved.
+        </footer>
+    </div>
+
+    <!-- ELEMEN TERSEMBUNYI KHUSUS UNTUK STRUKTUR PRINT PDF -->
+    <div id="pdfTemplate" class="hidden" style="font-family: Arial, sans-serif; padding: 30px; color: #1e293b;">
+        <div style="border-bottom: 3px solid #b45309; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 24px; font-weight: bold; color: #0f172a; margin: 0;">BLESS ARSITEK & KONTRAKTOR</h1>
+            <p style="font-size: 12px; color: #64748b; margin: 5px 0 0 0;">Resume Resmi Hasil Pengisian Formulir Konsultasi Klien</p>
+        </div>
+        <div id="pdfContent" style="font-size: 13px; line-height: 1.6;"></div>
+    </div>
+
+    <script>
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); 
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Hitung Otomatis Luas Lahan & Bangunan
+            const landWidth = document.getElementById('landWidth');
+            const landLength = document.getElementById('landLength');
+            const totalLandArea = document.getElementById('totalLandArea');
+            const buildingWidth = document.getElementById('buildingWidth');
+            const buildingLength = document.getElementById('buildingLength');
+            const totalBuildingArea = document.getElementById('totalBuildingArea');
+
+            function calculateArea() {
+                totalLandArea.innerText = ((parseFloat(landWidth.value) || 0) * (parseFloat(landLength.value) || 0)).toFixed(0);
+                totalBuildingArea.innerText = ((parseFloat(buildingWidth.value) || 0) * (parseFloat(buildingLength.value) || 0)).toFixed(0);
+            }
+            [landWidth, landLength, buildingWidth, buildingLength].forEach(i => i.addEventListener('input', calculateArea));
+
+            // Logika Dropdown Dinamis Konsep Bangunan
+            const buildingConcept = document.getElementById('buildingConcept');
+            const customConcept = document.getElementById('customConcept');
+            buildingConcept.addEventListener('change', function() {
+                if(this.value === 'Lainnya') customConcept.classList.remove('hidden');
+                else customConcept.classList.add('hidden');
+            });
+
+            // Logika Ruangan Lainnya
+            const cbRoomOthers = document.getElementById('cbRoomOthers');
+            const customRooms = document.getElementById('customRooms');
+            cbRoomOthers.addEventListener('change', function() {
+                if(this.checked) customRooms.classList.remove('hidden');
+                else customRooms.classList.add('hidden');
+            });
+
+            // Logika Dinamis Kamar Mandi Dalam
+            const mainBathroomRadios = document.querySelectorAll('input[name="mainBathroomType"]');
+            const innerBathroomOptions = document.getElementById('innerBathroomOptions');
+            
+            function toggleMainBathroomOptions() {
+                const selected = document.querySelector('input[name="mainBathroomType"]:checked').value;
+                if(selected === 'Kamar Mandi Dalam') {
+                    innerBathroomOptions.classList.remove('hidden');
+                } else {
+                    innerBathroomOptions.classList.add('hidden');
+                }
+            }
+            mainBathroomRadios.forEach(radio => radio.addEventListener('change', toggleMainBathroomOptions));
+            toggleMainBathroomOptions();
+
+            // LOGIKA DINAMIS: ATUR VISIBILITAS SEKSI KAPASITAS KENDARAAN (CARPORT/GARASI)
+            const cbCarport = document.getElementById('cbCarport');
+            const cbGarasi = document.getElementById('cbGarasi');
+            const vehicleCapacitySection = document.getElementById('vehicleCapacitySection');
+
+            function toggleVehicleCapacity() {
+                if(cbCarport.checked || cbGarasi.checked) {
+                    vehicleCapacitySection.classList.remove('hidden');
+                } else {
+                    vehicleCapacitySection.classList.add('hidden');
+                }
+            }
+            cbCarport.addEventListener('change', toggleVehicleCapacity);
+            cbGarasi.addEventListener('change', toggleVehicleCapacity);
+
+
+            // LOGIKA SUBMIT FORM
+            document.getElementById('consultationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('clientName').value;
+                const whatsapp = document.getElementById('clientWhatsapp').value;
+                const email = document.getElementById('clientEmail').value || '-';
+                const address = document.getElementById('clientAddress').value;
+                const pAddress = document.getElementById('projectAddress').value;
+                const jobType = document.querySelector('input[name="jobType"]:checked').value;
+                const bType = document.getElementById('buildingType').value;
+                const floorCount = document.querySelector('input[name="floorCount"]:checked').value;
+                const landFacing = document.querySelector('input[name="landFacing"]:checked').value;
+
+                let finalConcept = buildingConcept.value === 'Lainnya' ? "Lainnya (" + customConcept.value + ")" : buildingConcept.value;
+
+                const mainBedroom = document.getElementById('mainBedroomCount').value;
+                const childBedroom = document.getElementById('childBedroomCount').value;
+                const mainBathroomType = document.querySelector('input[name="mainBathroomType"]:checked').value;
+                const outerBathroom = document.getElementById('outerBathroomCount').value;
+
+                let innerFacilities = [];
+                if(mainBathroomType === 'Kamar Mandi Dalam') {
+                    document.querySelectorAll('.bathroom-facility:checked').forEach(cb => innerFacilities.push(cb.value));
+                }
+                const facilityStr = innerFacilities.length > 0 ? ` (${innerFacilities.join(', ')})` : '';
+                const mainBathroomFinal = mainBathroomType + facilityStr;
+
+                let kitchenTypes = [];
+                document.querySelectorAll('.kitchen-type:checked').forEach(cb => kitchenTypes.push(cb.value));
+                const kitchenFinal = kitchenTypes.length > 0 ? kitchenTypes.join(' & ') : 'Belum ditentukan';
+
+                // Pengumpulan Ruangan Tambahan
+                let roomList = [];
+                document.querySelectorAll('.room-cb:checked').forEach(cb => roomList.push(cb.value));
+                if(cbRoomOthers.checked && customRooms.value) roomList.push(customRooms.value);
+                const roomListStr = roomList.length > 0 ? roomList.join(', ') : 'Tidak ada tambahan';
+
+                // Ambil Data Kapasitas Kendaraan jika Carport/Garasi dipilih
+                let vehicleString = "Tidak dikonfigurasi";
+                if(cbCarport.checked || cbGarasi.checked) {
+                    const cars = document.getElementById('carCapacity').value;
+                    const motors = document.getElementById('motorCapacity').value;
+                    vehicleString = `${cars} & ${motors}`;
+                }
+
+                const targetStart = document.getElementById('targetStartDate').value;
+                const budgetSel = document.getElementById('budgetEstimation');
+                const budget = budgetSel.options[budgetSel.selectedIndex].text;
+                const notes = document.getElementById('additionalNotes').value || '-';
+
+                // RENDER STRUKTUR PDF
+                const pdfPrintWrapper = document.getElementById('pdfTemplate');
+                document.getElementById('pdfContent').innerHTML = `
+                    <h3 style="background:#0f172a; color:#fff; padding:6px 10px; margin-top:15px; font-size:14px;">DATA PEMILIK</h3>
+                    <table style="width:100%; border-collapse: collapse; margin-bottom:10px;">
+                        <tr><td style="width:35%; font-weight:bold; padding:4px 0;">Nama Lengkap:</td><td>${name}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">WhatsApp:</td><td>${whatsapp}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Email:</td><td>${email}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Alamat Tinggal:</td><td>${address}</td></tr>
+                    </table>
+                    <h3 style="background:#0f172a; color:#fff; padding:6px 10px; margin-top:15px; font-size:14px;">INFORMASI PROYEK</h3>
+                    <table style="width:100%; border-collapse: collapse; margin-bottom:10px;">
+                        <tr><td style="width:35%; font-weight:bold; padding:4px 0;">Alamat Proyek:</td><td>${pAddress}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Jenis Pekerjaan:</td><td>${jobType}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Jenis Bangunan:</td><td>${bType}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Jumlah Lantai:</td><td>${floorCount}</td></tr>
+                    </table>
+                    <h3 style="background:#0f172a; color:#fff; padding:6px 10px; margin-top:15px; font-size:14px;">DIMENSI LAHAN & BANGUNAN</h3>
+                    <table style="width:100%; border-collapse: collapse; margin-bottom:10px;">
+                        <tr><td style="width:35%; font-weight:bold; padding:4px 0;">Ukuran Lahan:</td><td>Lebar ${landWidth.value}m x Panjang ${landLength.value}m (Luas Lahan: ${totalLandArea.innerText} m²)</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Ukuran Bangunan:</td><td>Lebar ${buildingWidth.value}m x Panjang ${buildingLength.value}m (Luas Bangunan: ${totalBuildingArea.innerText} m²)</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Arah Hadap Lahan:</td><td>Hadap ${landFacing}</td></tr>
+                    </table>
+                    <h3 style="background:#0f172a; color:#fff; padding:6px 10px; margin-top:15px; font-size:14px;">KONSEP & SPESIFIKASI RUANGAN</h3>
+                    <table style="width:100%; border-collapse: collapse; margin-bottom:10px;">
+                        <tr><td style="width:35%; font-weight:bold; padding:4px 0;">Konsep Desain:</td><td>${finalConcept}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Kamar Utama:</td><td>${mainBedroom}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Kamar Anak:</td><td>${childBedroom}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Kamar Mandi Utama:</td><td>${mainBathroomFinal}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Kamar Mandi Luar:</td><td>${outerBathroom}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Spesifikasi Dapur:</td><td>${kitchenFinal}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Ruangan Lainnya:</td><td>${roomListStr}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Kapasitas Kendaraan:</td><td>${vehicleString}</td></tr>
+                    </table>
+                    <h3 style="background:#0f172a; color:#fff; padding:6px 10px; margin-top:15px; font-size:14px;">ESTIMASI & CATATAN KHUSUS</h3>
+                    <table style="width:100%; border-collapse: collapse; margin-bottom:10px;">
+                        <tr><td style="width:35%; font-weight:bold; padding:4px 0;">Target Mulai:</td><td>${targetStart}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0;">Estimasi Budget:</td><td>${budget}</td></tr>
+                        <tr><td style="font-weight:bold; padding:4px 0; vertical-align:top;">Catatan Tambahan:</td><td>${notes}</td></tr>
+                    </table>
+                `;
+
+                pdfPrintWrapper.classList.remove('hidden');
+                const pdfOptions = {
+                    margin:       15,
+                    filename:     `Formulir_Konsultasi_Bless_${name.replace(/\s+/g, '_')}.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                // GENERATE PDF
+                html2pdf().from(pdfPrintWrapper).set(pdfOptions).save().then(() => {
+                    pdfPrintWrapper.classList.add('hidden');
+                    
+                    // CADANGAN DATA EMAILJS
+                    const summaryProjectText = `Jenis: ${bType}, Pekerjaan: ${jobType}, Luas Lahan: ${totalLandArea.innerText}m², Hadap: ${landFacing}, Luas Bangunan: ${totalBuildingArea.innerText}m², Ruangan: ${roomListStr}, Kendaraan: ${vehicleString}, Budget: ${budget}, Catatan: ${notes}`;
+
+                    const emailParams = {
+                        to_email: 'arsitekkontraktorbless@gmail.com',
+                        from_name: name,
+                        client_whatsapp: whatsapp,
+                        client_email: email,
+                        client_address: address,
+                        project_address: pAddress,
+                        project_details: summaryProjectText
+                    };
+
+                    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", emailParams)
+                    .then(function() {
+                        console.log('Form berhasil dicadangkan ke email.');
+                    }, function(error) {
+                        console.error('Email gagal dikirim.', error);
+                    });
+                    
+                    // STRUKTUR TEXT WHATSAPP
+                    const targetPhone = "6285176965609";
+                    const waMessage = `*FORMULIR KONSULTASI PROYEK*
+*BLESS ARSITEK & KONTRAKTOR*
+──────────────────────────
+
+👤 *DATA PEMILIK*
+• *Nama Lengkap :* ${name}
+• *No. WhatsApp :* ${whatsapp}
+• *Alamat Email :* ${email}
+• *Alamat Tinggal :* ${address}
+
+🏗️ *INFORMASI PROYEK*
+• *Lokasi Proyek :* ${pAddress}
+• *Jenis Pekerjaan :* ${jobType}
+• *Jenis Bangunan :* ${bType}
+• *Jumlah Lantai :* ${floorCount}
+
+📐 *DIMENSI LAHAN & BANGUNAN*
+• *Ukuran Lahan :* L: ${landWidth.value}m x P: ${landLength.value}m
+• *Luas Lahan :* ${totalLandArea.innerText} m²
+• *Arah Hadap Lahan :* Hadap ${landFacing}
+• *Ukuran Bangunan :* L: ${buildingWidth.value}m x P: ${buildingLength.value}m
+• *Luas Bangunan :* ${totalBuildingArea.innerText} m²
+
+✨ *KONSEP & KEBUTUHAN RUANG*
+• *Konsep Desain :* ${finalConcept}
+• *Kamar Utama :* ${mainBedroom}
+• *Kamar Anak :* ${childBedroom}
+• *KM. Kamar Utama :* ${mainBathroomFinal}
+• *Kamar Mandi Luar :* ${outerBathroom}
+• *Spesifikasi Dapur :* ${kitchenFinal}
+• *Ruangan Tambahan :* ${roomListStr}
+• *Kapasitas Kendaraan :* ${vehicleString}
+
+💰 *ESTIMASI & TARGET*
+• *Target Mulai :* ${targetStart}
+• *Estimasi Anggaran :* ${budget}
+
+📝 *CATATAN TAMBAHAN*
+"${notes}"
+
+──────────────────────────
+_Sistem otomatis: Berkas ringkasan PDF telah diunduh oleh klien, dan data form telah dicadangkan ke email arsitekkontraktorbless@gmail.com._`;
+
+                    window.open(`https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(waMessage)}`, '_blank');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
